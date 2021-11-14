@@ -121,12 +121,9 @@ main {
 
 .gallery-item {
     /* background-color: red; */
-    position: relative;
-    /* min-width: calc(( 100% - var(--max-items_per_row) * 0.2% ) / var(--max-items_per_row) ); */
-    
-    --item-width: calc(( 100% - 70px) / 7 );
-   min-width: var(--item-width);
-  
+    position: relative;    
+    --item-width: calc(( 100% - var(--max-items_per_row) * var(--gutter)) / 7 );
+    min-width: var(--item-width);
     max-width: 100%;
     margin-top: calc(var(--vert-margin) / 2);
     margin-bottom: calc(var(--vert-margin) / 2);
