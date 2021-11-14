@@ -6,11 +6,11 @@
 
     --vert-margin: 10px;
     --tot_vert-margins_perc: 10%; /* non sarebbe meglio in vh? */
-    --tot_vert-margin: calc(var(--min-vert-margin) * (var(--rows) -1));
+    --tot_vert-margin: calc(var(--min-vert-margin) * (var(--rows)));
 
     --gutter: 5px;
     --tot_gutters_perc: 10%;
-    --tot_gutters : calc(var(--min-gutter) * (var(--items_per_row) - 1));
+    --tot_gutters : calc(var(--min-gutter) * (var(--items_per_row)));
 
     --item-width: 0; /* per usare una variabile locale ad una regola, al di fuori di essa, è necessario dichiararla in :root; il suo valore sarà poi sovrascritto da lì in poi per tutte */
 
@@ -110,13 +110,13 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    align-content: flex-start;
+    align-content: center;
     width: 90%;
     height: 85%;
     margin: 20px auto;
     background-color: cadetblue;
     overflow: auto;
-    padding: 0 !important;
+    padding: 5px !important;
 }
 
 .gallery-item {
@@ -125,7 +125,8 @@ main {
     /* min-width: calc(( 100% - var(--max-items_per_row) * 0.2% ) / var(--max-items_per_row) ); */
     
     --item-width: calc(( 100% - 70px) / 7 );
-    flex-basis: var(--item-width);
+   min-width: var(--item-width);
+  
     max-width: 100%;
     margin-top: calc(var(--vert-margin) / 2);
     margin-bottom: calc(var(--vert-margin) / 2);
