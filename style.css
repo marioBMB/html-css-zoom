@@ -1,0 +1,165 @@
+
+:root {
+
+    --max-rows: 5;
+    --max-items_per_row: 7;
+
+    --vert-margin: 10px;
+    --tot_vert-margins_perc: 10%; /* non sarebbe meglio in vh? */
+    --tot_vert-margin: calc(var(--min-vert-margin) * (var(--rows) -1));
+
+    --gutter: 5px;
+    --tot_gutters_perc: 10%;
+    --tot_gutters : calc(var(--min-gutter) * (var(--items_per_row) - 1));
+
+    --item-width: 0; /* per usare una variabile locale ad una regola, al di fuori di essa, è necessario dichiararla in :root; il suo valore sarà poi sovrascritto da lì in poi per tutte */
+
+
+        
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body  {
+    color: white;
+    font-size: 14px;
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    background-color: black;
+    height: 90%;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex.m-column {
+    flex-direction: column;
+}
+
+/* MAIN AXIS */
+.flex.m-start {
+    justify-content: flex-start;
+}
+
+.flex.m-center {
+    justify-content: center;
+}
+
+.flex.m-end {
+    justify-content: flex-end;
+}
+
+
+/* CROSS AXIS */
+.flex.c-start {
+    align-items: flex-start;
+}
+
+.flex.c-center {
+    align-items: center;
+}
+
+
+/* BOTH */
+.flex.m-c-center{
+    justify-content: center;
+    align-items: center;
+}
+
+
+header {
+    display: flex;
+    justify-content: flex-end; /* fa sì che i nuovi elementi siano allineati a partire da destra */
+    align-items: center;
+    height: 50px;
+}
+
+
+.view-options {
+    display: flex;
+    align-items: stretch; /* affinché sfondo opzioni abbiano stessa altezza; si può omettere */
+    cursor: pointer;
+    order: 999; /* come fosse un float right, che ricordiamo non si può dare ad un flex */
+}
+
+.view-options > div {
+    background-color: rgba(74, 74, 74, 0.9);
+    border-radius: 7px;
+    padding: 5px;
+    margin: 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+i {
+    margin: 0 5px;
+}
+
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    width: 90%;
+    height: 85%;
+    margin: 20px auto;
+    background-color: cadetblue;
+    overflow: auto;
+    padding: 0 !important;
+}
+
+.gallery-item {
+    /* background-color: red; */
+    position: relative;
+    /* min-width: calc(( 100% - var(--max-items_per_row) * 0.2% ) / var(--max-items_per_row) ); */
+    
+    --item-width: calc(( 100% - 70px) / 7 );
+    flex-basis: var(--item-width);
+    max-width: 100%;
+    margin-top: calc(var(--vert-margin) / 2);
+    margin-bottom: calc(var(--vert-margin) / 2);
+    margin-left: calc(var(--gutter) / 2);
+    margin-right: calc(var(--gutter) / 2);
+    height: calc(100% / 5 - 15px); /* ricorda il collasso dei margini */
+}
+
+.gallery-item img {
+    display: block;
+    width: auto;
+    max-width: 100%;  /* in questo modo si adatta al contenitore */
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+.item-caption {
+    background-color: rgba(74, 74, 74, 0.6);
+    padding: 5px;
+    
+    transform: translate(0, -100%);
+    position: absolute;
+    font-size: 1em;
+    display: inline-block;
+
+}
+
+.item-caption i {
+    margin: 0 3px;
+}
+
+footer {
+    background-color: #222222;
+    display: flex;
+    height: 10%;
+}
