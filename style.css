@@ -4,7 +4,7 @@
     --max-rows: 5;
     --max-items_per_row: 7;
 
-    --vert-margin: 10px;
+    --vert-margin: 5px;
     --tot_vert-margins_perc: 10%; /* non sarebbe meglio in vh? */
     --tot_vert-margin: calc(var(--min-vert-margin) * (var(--rows)));
 
@@ -12,10 +12,7 @@
     --tot_gutters_perc: 10%;
     --tot_gutters : calc(var(--min-gutter) * (var(--items_per_row)));
 
-    --item-width: 0; /* per usare una variabile locale ad una regola, al di fuori di essa, è necessario dichiararla in :root; il suo valore sarà poi sovrascritto da lì in poi per tutte */
-
-
-        
+    --item-width: 0; /* per usare una variabile locale ad una regola, al di fuori di essa, è necessario dichiararla in :root; il suo valore sarà poi sovrascritto da lì in poi per tutte */        
 }
 
 * {
@@ -110,9 +107,9 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    align-content: center;
+    align-content: flex-start;
     width: 90%;
-    height: 85%;
+    height: 90%;
     margin: 20px auto;
     background-color: cadetblue;
     overflow: auto;
@@ -122,14 +119,13 @@ main {
 .gallery-item {
     /* background-color: red; */
     position: relative;    
-    --item-width: calc(( 100% - var(--max-items_per_row) * var(--gutter)) / 7 );
+    --item-width: calc(( 100% - 70px) / 7);
     min-width: var(--item-width);
     max-width: 100%;
     margin-top: calc(var(--vert-margin) / 2);
     margin-bottom: calc(var(--vert-margin) / 2);
     margin-left: calc(var(--gutter) / 2);
     margin-right: calc(var(--gutter) / 2);
-    height: calc(100% / 5 - 15px); /* ricorda il collasso dei margini */
 }
 
 .gallery-item img {
@@ -157,7 +153,70 @@ main {
 }
 
 footer {
-    background-color: #222222;
+    background-color: #222;
     display: flex;
+    align-items: flex-start;
     height: 10%;
+}
+
+footer nav {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: start;
+    width: 100%; /* senza width a 100 % non funziona */
+    height: 100%;
+}
+
+.nav-left, .nav-center, .nav-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.nav-right {
+    background-color: #4a4a4a;
+    padding: 20px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.select {
+    position: relative;
+}
+
+.select::before {
+    content: '\f077';
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900;
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+.nav-item {
+    display: inline-block;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    margin-right: 10px;
+    min-width: 50px;
+
+}
+
+.nav-item i {
+    font-size: 28px;
+    margin: 5px;
+}
+
+.active i {
+    color: lightgreen;
+}
+
+.red {
+    color: red;
 }
